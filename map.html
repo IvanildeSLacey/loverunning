@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Maps with Pinned Locations</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<h3>My Google Map</h3>
+<div id="map"></div>
+
+<script>
+    function initMap() {
+        var location1 = {lat: 51.5074, lng: -0.1278}; // Coordinates for E41T886 (Example)
+        var location2 = {lat: 48.8566, lng: 2.3522}; // Coordinates for E41PF60 (Example)
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: location1
+        });
+
+        var marker1 = new google.maps.Marker({
+            position: location1,
+            map: map,
+            title: 'Location 1'
+        });
+
+        var marker2 = new google.maps.Marker({
+            position: location2,
+            map: map,
+            title: 'Location 2'
+        });
+
+        var infowindow1 = new google.maps.InfoWindow({
+            content: '<a href="YOUR_LINK1_URL" target="_blank">Location 1</a>'
+        });
+
+        var infowindow2 = new google.maps.InfoWindow({
+            content: '<a href="YOUR_LINK2_URL" target="_blank">Location 2</a>'
+        });
+
+        marker1.addListener('click', function() {
+            infowindow1.open(map, marker1);
+        });
+
+        marker2.addListener('click', function() {
+            infowindow2.open(map, marker2);
+        });
+    }
+    
+    window.onload = initMap;
+</script>
+
+</body>
+</html>
